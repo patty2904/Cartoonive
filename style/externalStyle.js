@@ -32,6 +32,24 @@ const externalStyle = StyleSheet.create({
       fontStyle: {
         fontFamily: 'Menlo',
         color: '#082370'
+      },
+      header: {
+        width: '100%',
+        height: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#B6A3B0',
+      },
+      headerText: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#333',
+        letterSpacing: 1
+      },
+      icon: {
+        position: 'absolute',
+        left: 16
       }
 })
 
