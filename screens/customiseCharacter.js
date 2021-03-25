@@ -7,20 +7,18 @@ import FlatButton from '../style/button.js';
 
 export default function customiseCharacter( {navigation} ) {
 
-const setCharacter = () => {
-  const [character, setCharacter] = useState(null);
-}
+// const [character, setCharacter] = useState(''); 
 
-var i = 0;
+// const handleCharacter = (theCharacter) => { 
+// setCharacter(theCharacter);
+// console.log(theCharacter);
+// }
 
-const pressHandler1 = (character) => {
-  console.log('new');
-  setCharacter(character);
-  console.log(i + ': ' + character);
-  i++;
-
-  //store pressed data as value outside of function
-}
+ const pressHandler = (num) => {
+   console.log(num);
+   
+   move();
+ }
 
 const move = () => {
   navigation.navigate('Home');
@@ -65,43 +63,43 @@ const move = () => {
             showsHorizontalScrollIndicator={false}
         >
 
-          <TouchableOpacity onPress={(pressHandler1('1'))}>
+          <TouchableOpacity onPress={()=>pressHandler('1')}>
             <Image style={{height: 120,
               width: 120, alignSelf: 'center'}} source={require('../assets/characters/001-superhero.png')}
             />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={(pressHandler1('2'))}>
+            <TouchableOpacity onPress={()=>pressHandler('2')}>
             <Image style={{height: 120,
               width: 120, alignSelf: 'center'}} source={require('../assets/characters/003-superhero.png')}
             />
             </TouchableOpacity>
           
-            <TouchableOpacity onPress={(pressHandler1('3'))}>
+            <TouchableOpacity onPress={()=>pressHandler('3')}>
             <Image style={{height: 120,
               width: 120, alignSelf: 'center'}} source={require('../assets/characters/013-superhero.png')}
             />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={(pressHandler1('4'))}>
+            <TouchableOpacity onPress={()=>pressHandler('4')}>
             <Image style={{height: 120,
               width: 120, alignSelf: 'center'}} source={require('../assets/characters/017-superhero.png')}
             />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={(pressHandler1('5'))}>
+            <TouchableOpacity onPress={()=>pressHandler('5')}>
             <Image style={{height: 120,
               width: 120, alignSelf: 'center'}} source={require('../assets/characters/025-superhero.png')}
             />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={(pressHandler1('6'))}>
+            <TouchableOpacity onPress={()=>pressHandler('6')}>
             <Image style={{height: 120,
               width: 120, alignSelf: 'center'}} source={require('../assets/characters/038-superhero.png')}
             />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={(pressHandler1('7'))}>
+            <TouchableOpacity onPress={()=>pressHandler('7')}>
             <Image style={{height: 120,
               width: 120, alignSelf: 'center'}} source={require('../assets/characters/041-superhero.png')}
             />
@@ -110,7 +108,7 @@ const move = () => {
         </ScrollView>
             </ImageBackground>
             </View>    
-            <FlatButton text='select' style = {externalStyle.fontStyle} onPress={move} />
+            
           </ImageBackground>
           </View>
 
