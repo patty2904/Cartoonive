@@ -7,15 +7,24 @@ import FlatButton from '../style/button.js';
 import {Container, Footer} from 'native-base';
 
 
-export default function home() {
+export default function home({navigation}) {
 
-    return (
-
-    <SafeAreaView style={externalStyle.container}>
+    return (  
+    <View style={externalStyle.container}>
       <LinearGradient
         colors={['#0A043C', '#03506F', '#A3DDCB','#A3DDCB' ]}
         style={externalStyle.background}
       />  
+
+<View style={externalStyle.headerr}>
+<TouchableOpacity onPress={() => { navigation.navigate("CustomCharacters") }}>
+            <Image
+        style={{ width: 50, height: 50, right: 155, top: 17}}
+        source={require('../assets/back_blue.png')}
+      />
+      </TouchableOpacity>
+        </View>
+
         <View style={externalStyle.container}>
       <ImageBackground
             source={require('../assets/cleanlogo.png')}
@@ -34,6 +43,7 @@ style={{
     left: 50
     
 }} >
+  <TouchableOpacity onPress={() => {navigation.navigate("Movies")  }}>
 <Image source={require('../assets/movies.png')}
 style={{
     width: '55%', 
@@ -43,6 +53,7 @@ style={{
     left: 40
 }}
 />
+</TouchableOpacity>
 </ImageBackground>
 <ImageBackground source={require('../assets/circle.png')}
 style={{
@@ -53,6 +64,7 @@ style={{
     right: -60
     
 }} >
+  <TouchableOpacity onPress={() => {navigation.navigate("Series")  }}>
     <Image source={require('../assets/series.png')}
     style={{
         width: '55%', 
@@ -62,12 +74,16 @@ style={{
         left: 45
     }}
     />
+   </TouchableOpacity>
     </ImageBackground>
 
      </ImageBackground>
         </View>
+        <View style={externalStyle.footer}>
+        <Text style={{fontSize:20}}> </Text>
+        </View>
+         </View>
 
-    </SafeAreaView>
 
     )
 }

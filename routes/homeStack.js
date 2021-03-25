@@ -5,9 +5,9 @@ import CustomCharacters from '../screens/customiseCharacter';
 import Home from '../screens/home';
 import Header from '../style/header';
 import React from 'react';
+import Movies from '../screens/movies';
+import Series from '../screens/series'
 import {Image, TouchableOpacity } from 'react-native';
-
-
 
 const screens = {
    Start: {
@@ -23,6 +23,7 @@ const screens = {
        screen: CustomCharacters,
        navigationOptions: {
            headerTitle: () => <Header />,
+           headerLeft: () => (null),
            headerStyle: {
             height: 0
         }
@@ -34,14 +35,39 @@ const screens = {
        navigationOptions: {
         headerTitle: () => <Header />,
         headerLeft: () => (
-            <TouchableOpacity>
-            <Image
-        style={{ width: 50, height: 50, left: 10, top: -5 }}
-        source={require('../assets/back_blue.png')}
-       // onPress={() => { this.props.navigation.navigate("CustomCharacters") }}
-      />
-      </TouchableOpacity>
+          null
         ),
+        headerStyle: {
+            height: 0
+        }
+    
+        }
+   },
+   Movies: {
+       screen: Movies,
+       navigationOptions: {
+        headerTitle: () => <Header />,
+        headerLeft: () => (
+          null
+        ),
+        headerStyle: {
+            height: 0
+        }
+    
+        }
+       
+   },
+   Series: {
+       screen: Series,
+       navigationOptions: {
+        headerTitle: () => <Header />,
+        headerLeft: () => (
+          null
+        ),
+        headerStyle: {
+            height: 0
+        }
+    
         }
    }
 }

@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import externalStyle from '../style/externalStyle';
 import FlatButton from '../style/button.js';
 
-export default function Home({ navigation }) { //destructuring
+export default function Start({ navigation }) { //destructuring
 
     const pressHandler = () => {
         navigation.navigate('CustomCharacters');

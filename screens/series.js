@@ -7,16 +7,28 @@ import FlatButton from '../style/button.js';
 import {Container, Footer} from 'native-base';
 
 
-export default function series() {
+export default function series({navigation}) {
 
-    return (
-
-    <SafeAreaView style={externalStyle.container}>
+    return (  
+    <View style={externalStyle.container}>
       <LinearGradient
         colors={['#0A043C', '#03506F', '#A3DDCB','#A3DDCB' ]}
         style={externalStyle.background}
       />  
+
+<View style={externalStyle.headerr}>
+<TouchableOpacity onPress={() => { navigation.navigate("Home") }}>
+            <Image
+        style={{ width: 50, height: 50, right: 155, top: 50}}
+        source={require('../assets/back_blue.png')}
+      />
+      <Image 
+      style={{width: 60, height: 60, bottom: 10, right: 2}}
+      source={require('../assets/series.png')}
       
+      />
+      </TouchableOpacity>
+        </View>
 
         <View style={externalStyle.container}>
       <ImageBackground
@@ -27,10 +39,14 @@ export default function series() {
             }}
             resizeMode="contain"
           >
+
      </ImageBackground>
         </View>
+        <View style={externalStyle.footer}>
+        <Text style={{fontSize:20}}> </Text>
+        </View>
+         </View>
 
-    </SafeAreaView>
 
     )
 }

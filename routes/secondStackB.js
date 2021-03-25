@@ -14,7 +14,5 @@ const screens = {
     }
 
 
-}
-
 const secondStackB = createStackNavigator(screens);
 export default createAppContainer(secondStackB);

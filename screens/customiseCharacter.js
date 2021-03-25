@@ -4,8 +4,9 @@ import {Text, View, Alert, SafeAreaView, Image, ImageBackground, ScrollView, Cat
 import { LinearGradient } from "expo-linear-gradient";
 import externalStyle from '../style/externalStyle';
 import FlatButton from '../style/button.js';
+import { FlatList } from 'react-native-gesture-handler';
 
-export default function customiseCharacter( {navigation} ) {
+export default function customiseCharacter( {route, navigation} ) {
 
 // const [character, setCharacter] = useState(''); 
 
@@ -14,16 +15,24 @@ export default function customiseCharacter( {navigation} ) {
 // console.log(theCharacter);
 // }
 
- const pressHandler = (num) => {
-   console.log(num);
-   
-   move();
- }
 
-const move = () => {
+const [characters, setCharacters] = useState([
+    {image: require('../assets/characters/001-superhero.png'), key: '1'},
+    {image: require('../assets/characters/003-superhero.png'), key: '2'},
+    {image: require('../assets/characters/013-superhero.png'), key: '3'},
+    {image: require('../assets/characters/017-superhero.png'), key: '4'},
+    {image: require('../assets/characters/025-superhero.png'), key: '5'},
+    {image: require('../assets/characters/038-superhero.png'), key: '6'},
+    {image: require('../assets/characters/041-superhero.png'), key: '7'},
+
+])
+
+//const { superheroID } = route.params;
+
+ const pressHandler = (num) => {
+  console.log(num);
   navigation.navigate('Home');
-  
-}
+ }
 
   return (
     <SafeAreaView style={externalStyle.container}>
@@ -58,12 +67,14 @@ const move = () => {
               resizeMode="contain"
               source={require('../assets/pinkbox.png')}
             >
+
+              
         <ScrollView
             horizontal={true}
             showsHorizontalScrollIndicator={false}
         >
 
-          <TouchableOpacity onPress={()=>pressHandler('1')}>
+           <TouchableOpacity onPress={()=>pressHandler('1')}>
             <Image style={{height: 120,
               width: 120, alignSelf: 'center'}} source={require('../assets/characters/001-superhero.png')}
             />

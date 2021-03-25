@@ -50,6 +50,30 @@ const externalStyle = StyleSheet.create({
       icon: {
         position: 'absolute',
         left: 16
+      },
+      footer: {
+        backgroundColor: '#B6A3B0',
+        borderBottomColor: '#a7a7aa',
+        shadowColor: '#a7a7aa',
+        shadowOffset: {'width':0,'height':0.5},
+        shadowRadius: 0,
+        shadowOpacity: 0.85,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 92,
+        width: 414
+      },
+      headerr: {
+        backgroundColor: '#B6A3B0',
+        borderBottomColor: '#a7a7aa',
+        shadowColor: '#a7a7aa',
+        shadowOffset: {'width':0,'height':0.5},
+        shadowRadius: 0,
+        shadowOpacity: 0.85,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 102,
+        width: 414,
       }
 })
 
