@@ -5,9 +5,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import externalStyle from '../style/externalStyle';
 import FlatButton from '../style/button.js';
 import {Container, Footer} from 'native-base';
+import  seriesBaseMethod, {seriesBase} from '../objects/seriesBase.js';
 
 
 export default function movies({navigation}) {
+
+  const testMethod = () => {
+    seriesBaseMethod();
+  }
 
     return (  
     <View style={externalStyle.container}>
@@ -42,6 +47,8 @@ export default function movies({navigation}) {
 
      </ImageBackground>
         </View>
+        <FlatButton text='start' style = {externalStyle.fontStyle, {position: 'absolute'}} onPress={testMethod} />
+
         <View style={externalStyle.footer}>
         <Text style={{fontSize:20}}> </Text>
         </View>
