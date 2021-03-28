@@ -60,7 +60,7 @@ const externalStyle = StyleSheet.create({
         shadowOpacity: 0.85,
         justifyContent: 'center',
         alignItems: 'center',
-        height: 92,
+        height: 100,
         width: 414
       },
       headerr: {
@@ -74,6 +74,20 @@ const externalStyle = StyleSheet.create({
         alignItems: 'center',
         height: 102,
         width: 414,
+      },
+      circle: {
+        height: 175,
+        width: 190,  
+        resizeMode: 'contain',
+        //bottom: -20,
+        //right: 110
+      },
+      image: {
+        height : 100,
+        width: 180,
+        resizeMode: 'contain',
+        //bottom: -25,
+        //right: -10
       }
 })
 

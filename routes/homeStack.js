@@ -7,6 +7,7 @@ import Header from '../style/header';
 import React from 'react';
 import Movies from '../screens/movies';
 import Series from '../screens/series'
+import LibraryHome from '../screens/libraryHome';
 import {Image, TouchableOpacity } from 'react-native';
 
 const screens = {
@@ -69,7 +70,20 @@ const screens = {
         }
     
         }
-   }
+   },
+   LibraryHome: {
+       screen: LibraryHome,
+       navigationOptions: {
+        headerTitle: () => <Header />,
+        headerLeft: () => (
+          null
+        ),
+        headerStyle: {
+            height: 0
+        }
+    
+        }
+   },
 }
 
 

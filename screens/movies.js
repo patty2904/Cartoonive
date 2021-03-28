@@ -6,13 +6,11 @@ import externalStyle from '../style/externalStyle';
 import FlatButton from '../style/button.js';
 import {Container, Footer} from 'native-base';
 import  seriesBaseMethod, {seriesBase} from '../objects/seriesBase.js';
+import  {seriesList} from '../objects/seriesList';
 
 
 export default function movies({navigation}) {
 
-  const testMethod = () => {
-    seriesBaseMethod();
-  }
 
     return (  
     <View style={externalStyle.container}>
@@ -34,21 +32,21 @@ export default function movies({navigation}) {
       />
       </TouchableOpacity>
         </View>
+    
 
         <View style={externalStyle.container}>
       <ImageBackground
             source={require('../assets/cleanlogo.png')}
             style={{
               height: 327,
-              width: 327,  
+              width: 327,
+              
             }}
             resizeMode="contain"
           >
 
      </ImageBackground>
         </View>
-        <FlatButton text='start' style = {externalStyle.fontStyle, {position: 'absolute'}} onPress={testMethod} />
-
         <View style={externalStyle.footer}>
         <Text style={{fontSize:20}}> </Text>
         </View>

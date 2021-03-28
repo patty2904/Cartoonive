@@ -7,18 +7,10 @@ import FlatButton from '../style/button.js';
 import {Container, Footer} from 'native-base';
 import  seriesBaseMethod, {seriesBase} from '../objects/seriesBase.js';
 import  {seriesList} from '../objects/seriesList';
+import {image} from './home';
 
 
-export default function series({navigation}) {
-
-  const populateSeries = [];
-for (let i in seriesList) {
-   populateSeries.push(<ImageBackground style={externalStyle.circle} source= 
-   {require('../assets/circle.png')}>
-    <Image style={externalStyle.image} source={seriesList[i].uri}/>
-    </ImageBackground>);
-  }
-  
+export default function libraryHome({navigation}) {
 
     return (  
     <View style={externalStyle.container}>
@@ -35,27 +27,18 @@ for (let i in seriesList) {
       />
       <Image 
       style={{width: 60, height: 60, bottom: 10, right: 2}}
-      source={require('../assets/series.png')}
-      
-      />
+      source={image}/>
       </TouchableOpacity>
         </View>
-
-    <ScrollView>
-       <View>
-         {populateSeries}
-       </View>
-      
-    </ScrollView> 
-
+    
 
         <View style={externalStyle.container}>
       <ImageBackground
             source={require('../assets/cleanlogo.png')}
             style={{
               height: 327,
-              width: 327,  
-              bottom: 200
+              width: 327,
+              
             }}
             resizeMode="contain"
           >

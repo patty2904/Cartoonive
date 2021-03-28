@@ -5,6 +5,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import externalStyle from '../style/externalStyle';
 import FlatButton from '../style/button.js';
 import { FlatList } from 'react-native-gesture-handler';
+import  AsyncStorage  from '@react-native-async-storage/async-storage';
+
+var CHARACTER = '';
 
 export default function customiseCharacter( {route, navigation} ) {
 
@@ -31,7 +34,19 @@ const [characters, setCharacters] = useState([
 
  const pressHandler = (num) => {
   console.log(num);
+  CHARACTER = num;
   navigation.navigate('Home');
+ }
+
+ const storeData = async (num) => {
+   try {
+     await AsyncStorage.setItem('id', num);
+     console.log("saved. the selected id is: " + num);
+     navigation.navigate('Home');
+   } catch (error) {
+     console.log("error. the selected id is:  " + num);
+     navigation.navigate('Home');
+   }
  }
 
   return (
@@ -127,4 +142,4 @@ const [characters, setCharacters] = useState([
       </SafeAreaView>   
   );
 }
-
+ export{CHARACTER};
