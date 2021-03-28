@@ -6,6 +6,7 @@ import {
   View,
 } from 'react-native'
 import  {seriesList} from './seriesList';
+import {Image} from 'react-native';
 
 
 export default function seriesBaseMethod () {
@@ -14,6 +15,5 @@ export default function seriesBaseMethod () {
     for (let prop in seriesList) {
         array.push(seriesList[prop]);
     }  
-    console.log(seriesList[2].hasAdded);
-
+    console.log(seriesList[1].uri);
 }
