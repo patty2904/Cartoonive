@@ -76,19 +76,22 @@ const externalStyle = StyleSheet.create({
         width: 414,
       },
       circle: {
-        height: 175,
-        width: 190,  
+        height: 280,
+        width: 210,  
         resizeMode: 'contain',
         //bottom: -20,
         //right: 110
       },
       image: {
-        height : 100,
-        width: 180,
-        resizeMode: 'contain',
+        height : 150,
+        width: 210,
+        resizeMode: 'contain'
         //bottom: -25,
         //right: -10
       }
 })
 
 export default externalStyle;
+
+//height: 100,
+//width: 180, 

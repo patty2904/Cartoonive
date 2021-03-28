@@ -11,14 +11,29 @@ import  {seriesList} from '../objects/seriesList';
 
 export default function series({navigation}) {
 
+  var customTop = 15;
+  var customlLeft = 0;
+
   const populateSeries = [];
-for (let i in seriesList) {
-   populateSeries.push(<ImageBackground style={externalStyle.circle} source= 
+  for (let i in seriesList) {
+   populateSeries.push(<ImageBackground style={externalStyle.circle, {top: customTop, height: 210, width: 230}} source= 
    {require('../assets/circle.png')}>
-    <Image style={externalStyle.image} source={seriesList[i].uri}/>
+    <Image style={externalStyle.image, {alignContent: 'center',
+        right:-15, bottom: -70}} source={seriesList[i].uri}/>
     </ImageBackground>);
+    customTop+=25;
   }
+
+  // if (i % 2 == 0){
+  //   customTop+= 25;
+  //   customRight=155;
+  //   customlLeft=0;
+  // } else { 
+  //   customRight=0;
+  //   customlLeft=155;
+  //   }
   
+
 
     return (  
     <View style={externalStyle.container}>
@@ -45,7 +60,6 @@ for (let i in seriesList) {
        <View>
          {populateSeries}
        </View>
-      
     </ScrollView> 
 
 
