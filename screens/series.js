@@ -1,38 +1,60 @@
 import { StatusBar } from 'expo-status-bar';
 import React  from 'react';
-import {FooterTab, Header, Content, Text, View, Button, SafeAreaView, Image, ImageBackground, ScrollView, Category, TouchableOpacity} from 'react-native';
+import {Modal, Header, Content, Text, View, Button, SafeAreaView, Image, ImageBackground, ScrollView, Category, TouchableOpacity} from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import externalStyle from '../style/externalStyle';
 import FlatButton from '../style/button.js';
 import {Container, Footer} from 'native-base';
 import  seriesBaseMethod, {seriesBase} from '../objects/seriesBase.js';
 import  {seriesList} from '../objects/seriesList';
+import {useState} from "react";
 
 
 export default function series({navigation}) {
 
+  const [modalOpen, setModalOpen] = useState(false);
+
+
   var customTop = 15;
   var customlLeft = 0;
+  var customRight = 155;
 
   const populateSeries = [];
   for (let i in seriesList) {
-   populateSeries.push(<ImageBackground style={externalStyle.circle, {top: customTop, height: 210, width: 230}} source= 
+   populateSeries.push(<ImageBackground style={externalStyle.circle, {top: customTop, left: customlLeft, right: customRight, height: 180, width: 200}} source= 
    {require('../assets/circle.png')}>
-    <Image style={externalStyle.image, {alignContent: 'center',
-        right:-15, bottom: -70}} source={seriesList[i].uri}/>
-    </ImageBackground>);
-    customTop+=25;
-  }
 
-  // if (i % 2 == 0){
-  //   customTop+= 25;
-  //   customRight=155;
-  //   customlLeft=0;
-  // } else { 
-  //   customRight=0;
-  //   customlLeft=155;
-  //   }
+<Modal visible={modalOpen} animationType='slide'>
+  <View style={{backgroundColor: '#B6A3B0', flex: 1}}>
+    <TouchableOpacity onPress={() => {setModalOpen(false)}}> 
+      <Image 
+        style={{ width: 50, height: 50, left: 20, bottom: -50}}
+        source={require('../assets/removeblue.png')}/>  
+    </TouchableOpacity> 
+  </View>
+</Modal>
+
+
+    <TouchableOpacity onPress={() => {setModalOpen(true)}}>
+    <Image style={externalStyle.image} source={seriesList[i].uri}/>
+    </TouchableOpacity>
+
+
+    </ImageBackground>);
+    //customTop+=25;
+    if (i % 2 == 0){
+      customTop+= 15;
+      customRight=155;
+      customlLeft=0;
+    } else { 
+      customRight=0;
+      customlLeft=155;
+      }
+      
+  }
   
+  //{alignContent: 'center',
+ // right:-15, bottom: -70}
 
 
     return (  
@@ -57,7 +79,7 @@ export default function series({navigation}) {
         </View>
 
     <ScrollView>
-       <View>
+       <View style={{paddingLeft: -190, paddingRight: 170, marginLeft: 20}}>
          {populateSeries}
        </View>
     </ScrollView> 
@@ -69,7 +91,8 @@ export default function series({navigation}) {
             style={{
               height: 327,
               width: 327,  
-              bottom: 200
+              bottom: 300,
+              opacity: 0.4
             }}
             resizeMode="contain"
           >
