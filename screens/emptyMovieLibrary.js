@@ -22,7 +22,7 @@ import seriesBaseMethod, { seriesBase } from "../objects/seriesBase.js";
 import { seriesList } from "../objects/seriesList";
 import { image } from "./home";
 
-export default function seriesLibrary({ navigation }) {
+export default function emptyMovieLibrary({ navigation }) {
   return (
     <View style={externalStyle.container}>
       <LinearGradient
@@ -42,7 +42,7 @@ export default function seriesLibrary({ navigation }) {
           />
           <ImageBackground
             style={{ width: 60, height: 60, bottom: 10, right: 2 }}
-            source={require("../assets/series.png")}
+            source={require("../assets/movies.png")}
           >
             <Image
               style={{ width: 60, height: 60, right: -30 }}
@@ -89,7 +89,7 @@ export default function seriesLibrary({ navigation }) {
             bottom: 5,
           }}
         >
-          My Series
+          My Movies
         </Text>
       </View>
     </View>
