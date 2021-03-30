@@ -43,6 +43,50 @@ export default function libraryHome({navigation}) {
             resizeMode="contain"
           >
 
+<ImageBackground source={require('../assets/circle.png')}
+style={{
+    width: 315, 
+    height: 285, 
+    resizeMode: 'contain',
+    bottom: 150,
+    left: 5
+    
+}} >
+  <TouchableOpacity onPress={() => {navigation.navigate("MovieLibrary")  }}>
+<Image source={require('../assets/movies.png')}
+style={{
+  width: 210, 
+  height: 210,
+    resizeMode: 'contain',
+    bottom:-25,
+    left: 50
+}}
+/>
+</TouchableOpacity>
+</ImageBackground>
+<ImageBackground source={require('../assets/circle.png')}
+style={{
+    width: 315, 
+    height: 285, 
+    resizeMode: 'contain',
+    top: -105,
+    right: -10
+    
+}} >
+  <TouchableOpacity onPress={() => {navigation.navigate("SeriesLibrary")  }}>
+    <Image source={require('../assets/series.png')}
+    style={{
+      width: 210, 
+      height: 210, 
+        resizeMode: 'contain',
+        top: 30,
+        left: 50
+    }}
+    />
+   </TouchableOpacity>
+    </ImageBackground>
+
+
      </ImageBackground>
         </View>
         <View style={externalStyle.footer}>

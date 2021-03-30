@@ -8,6 +8,8 @@ import React from 'react';
 import Movies from '../screens/movies';
 import Series from '../screens/series'
 import LibraryHome from '../screens/libraryHome';
+import MovieLibrary from '../screens/movieLibrary';
+import SeriesLibrary from '../screens/seriesLibrary';
 import {Image, TouchableOpacity } from 'react-native';
 
 const screens = {
@@ -84,6 +86,32 @@ const screens = {
     
         }
    },
+   MovieLibrary: {
+    screen: MovieLibrary,
+    navigationOptions: {
+     headerTitle: () => <Header />,
+     headerLeft: () => (
+       null
+     ),
+     headerStyle: {
+         height: 0
+     }
+ 
+     }
+    },
+    SeriesLibrary: {
+    screen: SeriesLibrary,
+    navigationOptions: {
+     headerTitle: () => <Header />,
+     headerLeft: () => (
+       null
+     ),
+     headerStyle: {
+         height: 0
+     }
+ 
+     }
+    },
 }
 
 

@@ -18,16 +18,6 @@ import SEVEN from '../assets/characters/041-superhero.png';
 var image = '';
 export default function home({navigation}) {
 
-  // const retrieveData = async () => {
-  //   try {
-  //     const value = await AsyncStorage.getItem('id');
-  //     if (value !== null){
-  //       console.log("retrieved data");
-  //     }
-  //   } catch (error) {
-  //     console.log("failed to retrieve data")
-  //   }
-  // }
   const retrieveCharacter = () => {
     if (CHARACTER == 1){
       image = ONE;

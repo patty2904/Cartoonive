@@ -83,8 +83,8 @@ const externalStyle = StyleSheet.create({
         //right: 110
       },
       image: {
-        height : 150,
-        width: 210,
+        height: 280,
+        width: 210,  
         resizeMode: 'contain'
         //bottom: -25,
         //right: -10

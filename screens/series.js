@@ -1,62 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
 import React  from 'react';
 import {Modal, Header, Content, Text, View, Button, SafeAreaView, Image, ImageBackground, ScrollView, Category, TouchableOpacity} from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import externalStyle from '../style/externalStyle';
-import FlatButton from '../style/button.js';
-import {Container, Footer} from 'native-base';
-import  seriesBaseMethod, {seriesBase} from '../objects/seriesBase.js';
 import  {seriesList} from '../objects/seriesList';
 import {useState} from "react";
-
+import {image} from './home';
 
 export default function series({navigation}) {
-
   const [modalOpen, setModalOpen] = useState(false);
 
-
+  let imageToggle = true;
   var customTop = 15;
-  var customlLeft = 0;
+  var customLeft = 0;
   var customRight = 155;
-
+  let k = 19;
   const populateSeries = [];
   for (let i in seriesList) {
-   populateSeries.push(<ImageBackground style={externalStyle.circle, {top: customTop, left: customlLeft, right: customRight, height: 180, width: 200}} source= 
-   {require('../assets/circle.png')}>
-
-<Modal visible={modalOpen} animationType='slide'>
-  <View style={{backgroundColor: '#B6A3B0', flex: 1}}>
-    <TouchableOpacity onPress={() => {setModalOpen(false)}}> 
-      <Image 
-        style={{ width: 50, height: 50, left: 20, bottom: -50}}
-        source={require('../assets/removeblue.png')}/>  
-    </TouchableOpacity> 
-  </View>
-</Modal>
-
-
-    <TouchableOpacity onPress={() => {setModalOpen(true)}}>
-    <Image style={externalStyle.image} source={seriesList[i].uri}/>
+   populateSeries.push(
+    <TouchableOpacity onPress={() => 
+      {setModalOpen(true)
+      k = i
+      console.log("k inside loop:" + k)}}>
+    <Image style={externalStyle.image,
+     {top: customTop, left: customLeft, right: customRight, height: 180, width: 200}}
+    source={seriesList[i].uri}/>
     </TouchableOpacity>
-
-
-    </ImageBackground>);
-    //customTop+=25;
+    );
     if (i % 2 == 0){
       customTop+= 15;
       customRight=155;
-      customlLeft=0;
+      customLeft=0;
     } else { 
       customRight=0;
-      customlLeft=155;
+      customLeft=155;
       }
-      
   }
   
-  //{alignContent: 'center',
- // right:-15, bottom: -70}
-
-
     return (  
     <View style={externalStyle.container}>
       <LinearGradient
@@ -73,18 +52,138 @@ export default function series({navigation}) {
       <Image 
       style={{width: 60, height: 60, bottom: 10, right: 2}}
       source={require('../assets/series.png')}
-      
       />
       </TouchableOpacity>
         </View>
 
     <ScrollView>
        <View style={{paddingLeft: -190, paddingRight: 170, marginLeft: 20}}>
-         {populateSeries}
+         {populateSeries}       
        </View>
     </ScrollView> 
 
+    <View>
+    <Modal visible={modalOpen} animationType='slide'>
+  <View style={{backgroundColor: '#B6A3B0', flex: 1}}>
+    <TouchableOpacity onPress={() => 
+    {setModalOpen(false)
+  console.log("k outside of loop: " + k)
+    }}> 
+      <Image 
+        style={{ width: 50, height: 50, left: 20, bottom: -50}}
+        source={require('../assets/removeblue.png')}/>  
+    </TouchableOpacity> 
+    <Image style={{height: 200,
+        width: 200,  bottom: -40, left: 105}} source={seriesList[k].uri}/>
+    <Text
+        style={{
+          bottom: -60,
+          color: 'black',
+          fontFamily: 'MarkerFelt-Thin',
+          fontSize: 21,
+          textAlign: 'left'
+      }}
+    >Name:  {seriesList[k].name}</Text>
+    <Text
+    style={{
+      bottom: -90,
+      color: 'black',
+      fontFamily: 'MarkerFelt-Thin',
+      fontSize: 21,
+      textAlign: 'left'
+  }}
+    >Year:  {seriesList[k].year}</Text>
+    <Text
+    style={{
+      bottom: -120,
+      color: 'black',
+      fontSize: 21,
+      textAlign: 'left',
+      fontFamily: 'MarkerFelt-Thin'
+  }}
+    >Description:  {seriesList[k].description}</Text>
 
+    <TouchableOpacity onPress={() => {
+      imageToggle = false;
+      console.log(imageToggle)
+      }}> 
+      {
+      imageToggle === true ?
+      <Image style={{height: 80,
+        width: 80,  bottom: -130, left: 150}} source={
+          require('../assets/plus.png')}/> :
+          <Image style={{height: 80,
+            width: 80,  bottom: -130, left: 150}} source={
+              require('../assets/tick.png')}/>
+      }
+    </TouchableOpacity>
+
+    <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            style={{bottom: -200}}
+        >
+
+           <TouchableOpacity onPress={()=>pressHandler('1')}>
+            <Image style={{height: 100,
+              width: 100, alignSelf: 'center'}} source={require('../assets/emojis/happiness.png')}
+            />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={()=>pressHandler('2')}>
+            <Image style={{height: 100,
+              width: 100, alignSelf: 'center'}} source={require('../assets/emojis/sadness.png')}
+            />
+            </TouchableOpacity>
+          
+            <TouchableOpacity onPress={()=>pressHandler('3')}>
+            <Image style={{height: 100,
+              width: 100, alignSelf: 'center'}} source={require('../assets/emojis/love.png')}
+            />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={()=>pressHandler('4')}>
+            <Image style={{height: 100,
+              width: 100, alignSelf: 'center'}} source={require('../assets/emojis/fear.png')}
+            />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={()=>pressHandler('5')}>
+            <Image style={{height: 100,
+              width: 100, alignSelf: 'center'}} source={require('../assets/emojis/excited.png')}
+            />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={()=>pressHandler('6')}>
+            <Image style={{height: 100,
+              width: 100, alignSelf: 'center'}} source={require('../assets/emojis/dead.png')}
+            />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={()=>pressHandler('7')}>
+            <Image style={{height: 100,
+              width: 100, alignSelf: 'center'}} source={require('../assets/emojis/disappointment.png')}
+            />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={()=>pressHandler('8')}>
+            <Image style={{height: 100,
+              width: 100, alignSelf: 'center'}} source={require('../assets/emojis/friendly.png')}
+            />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={()=>pressHandler('9')}>
+            <Image style={{height: 100,
+              width: 100, alignSelf: 'center'}} source={require('../assets/emojis/sickness.png')}
+            />
+            </TouchableOpacity>
+
+        </ScrollView>
+
+
+  </View>
+</Modal>
+    </View>
         <View style={externalStyle.container}>
       <ImageBackground
             source={require('../assets/cleanlogo.png')}
@@ -100,7 +199,15 @@ export default function series({navigation}) {
      </ImageBackground>
         </View>
         <View style={externalStyle.footer}>
-        <Text style={{fontSize:20}}> </Text>
+        <ImageBackground 
+          source={require('../assets/bluecircle.png')}
+          style={{ width: 100, height: 100, left: 155, top: 0}}>
+          <TouchableOpacity onPress={() => {navigation.navigate("LibraryHome")}} >
+          <Image 
+        style={{width: 80, height: 80, left: 10, top: 10}}
+        source={image}/>
+        </TouchableOpacity>
+        </ImageBackground>
         </View>
          </View>
 
