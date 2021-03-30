@@ -1,5 +1,5 @@
 import SHREK from '../assets/movie_avatars/shrek.png';
-import BH6 from '../assets/movie_avatars/bh6.png';
+import BH6 from '../assets/movie_avatars/bg6.png';
 import HTTYD2 from '../assets/movie_avatars/httyd2.png';
 import LORAX from '../assets/movie_avatars/lorax.png';
 import BL from '../assets/movie_avatars/bl.png';
@@ -13,7 +13,7 @@ import BB from '../assets/movie_avatars/bb.png';
 import IO from '../assets/movie_avatars/io.png';
 import UP from '../assets/movie_avatars/up.png';
 import INCR from '../assets/movie_avatars/incr.png';
-import MONS from '../assets/movie_avatars/mons.png';
+import MONS from '../assets/movie_avatars/MONS.png';
 import FROZEN from '../assets/movie_avatars/frozen.png';
 import COR from '../assets/movie_avatars/cor.png';
 import CIP from '../assets/movie_avatars/cip.png';

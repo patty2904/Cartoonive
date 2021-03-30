@@ -5,9 +5,11 @@ import externalStyle from '../style/externalStyle';
 import  {seriesList} from '../objects/seriesList';
 import {useState} from "react";
 import {image} from './home';
+import { get } from 'react-native/Libraries/Utilities/PixelRatio';
 
 export default function series({navigation}) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [getK, setK] = useState(7);
 
   let imageToggle = true;
   var customTop = 15;
@@ -19,7 +21,7 @@ export default function series({navigation}) {
    populateSeries.push(
     <TouchableOpacity onPress={() => 
       {setModalOpen(true)
-      k = i
+       setK(i);
       console.log("k inside loop:" + k)}}>
     <Image style={externalStyle.image,
      {top: customTop, left: customLeft, right: customRight, height: 180, width: 200}}
@@ -74,7 +76,7 @@ export default function series({navigation}) {
         source={require('../assets/removeblue.png')}/>  
     </TouchableOpacity> 
     <Image style={{height: 200,
-        width: 200,  bottom: -40, left: 105}} source={seriesList[k].uri}/>
+        width: 200,  bottom: -40, left: 105}} source={seriesList[getK].uri}/>
     <Text
         style={{
           bottom: -60,
@@ -83,7 +85,7 @@ export default function series({navigation}) {
           fontSize: 21,
           textAlign: 'left'
       }}
-    >Name:  {seriesList[k].name}</Text>
+    >Name:  {seriesList[getK].name}</Text>
     <Text
     style={{
       bottom: -90,
@@ -92,7 +94,7 @@ export default function series({navigation}) {
       fontSize: 21,
       textAlign: 'left'
   }}
-    >Year:  {seriesList[k].year}</Text>
+    >Year:  {seriesList[getK].year}</Text>
     <Text
     style={{
       bottom: -120,
@@ -101,7 +103,7 @@ export default function series({navigation}) {
       textAlign: 'left',
       fontFamily: 'MarkerFelt-Thin'
   }}
-    >Description:  {seriesList[k].description}</Text>
+    >Description:  {seriesList[getK].description}</Text>
 
     <TouchableOpacity onPress={() => {
       imageToggle = false;
