@@ -25,12 +25,15 @@ import NINE from "../assets/emojis/sickness.png";
 import PINK from "../assets/circle.png";
 
 export default function seriesLibrary({ navigation }) {
+  //use state variables to manipulate opening of modal
+  //and to display modal data appropriately
   const [modalOpen, setModalOpen] = useState(false);
   const [getK, setK] = useState(0);
 
   var customTop = 15;
   let k = 1;
 
+  //load object data in
   const populateSeriesLibrary = [];
   for (let i in addedSeriesList) {
     populateSeriesLibrary.push(
@@ -38,7 +41,6 @@ export default function seriesLibrary({ navigation }) {
         onPress={() => {
           setModalOpen(true);
           setK(i);
-          console.log("k inside loop:" + k);
         }}
       >
         <Image
@@ -58,7 +60,8 @@ export default function seriesLibrary({ navigation }) {
     );
     customTop += 15;
   }
-
+  k;
+  //get correct rating, assign variable to corresponding image source
   var seriesRatingImage = "";
   const retrieveSeriesRating = () => {
     if (seriesRating == 1) {
@@ -114,6 +117,7 @@ export default function seriesLibrary({ navigation }) {
         </TouchableOpacity>
       </View>
 
+      {/* Calling the array */}
       <ScrollView>
         <View style={{ paddingLeft: -190, paddingRight: 170, marginLeft: 20 }}>
           {populateSeriesLibrary}
@@ -122,6 +126,7 @@ export default function seriesLibrary({ navigation }) {
               navigation.navigate("Series");
             }}
           >
+            {/* Plus button navigates back accordingly */}
             <Image
               source={require("../assets/plus.png")}
               style={{
@@ -144,6 +149,7 @@ export default function seriesLibrary({ navigation }) {
               flex: 1,
             }}
           >
+            {/* Close modal when button pressed */}
             <View style={{ backgroundColor: "#B6A3B0", flex: 1 }}>
               <TouchableOpacity
                 onPress={() => {
@@ -155,6 +161,7 @@ export default function seriesLibrary({ navigation }) {
                   source={require("../assets/removeblue.png")}
                 />
               </TouchableOpacity>
+              {/* Display data accordingly based on useState variable above - getK */}
               <Image
                 style={{ height: 200, width: 200, bottom: -40, left: 105 }}
                 source={addedSeriesList[getK].uri}
@@ -196,6 +203,7 @@ export default function seriesLibrary({ navigation }) {
                 style={{ height: 80, width: 80, bottom: -140, left: 150 }}
                 source={require("../assets/tick.png")}
               />
+              {/* Get correct rating */}
               <Image
                 style={{ height: 80, width: 80, left: 150, bottom: -190 }}
                 source={seriesRatingImage}

@@ -3,25 +3,20 @@ import React, { useState } from "react";
 import {
   Text,
   View,
-  Alert,
   SafeAreaView,
   Image,
   ImageBackground,
   ScrollView,
-  Category,
   TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import externalStyle from "../style/externalStyle";
-import FlatButton from "../style/button.js";
-import { FlatList } from "react-native-gesture-handler";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 var CHARACTER = "";
 
-export default function customiseCharacter({ route, navigation }) {
+export default function customiseCharacter({ navigation }) {
+  //Assign variable for appropriately pressed character
   const pressHandler = (num) => {
-    console.log(num);
     CHARACTER = num;
     navigation.navigate("Home");
   };
@@ -74,6 +69,7 @@ export default function customiseCharacter({ route, navigation }) {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
               >
+                {/* Assign appropraite value for pressHandler */}
                 <TouchableOpacity onPress={() => pressHandler("1")}>
                   <Image
                     style={{

@@ -1,27 +1,18 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
-  FooterTab,
-  Header,
-  Content,
   Text,
   View,
-  Button,
-  SafeAreaView,
   Image,
   ImageBackground,
-  ScrollView,
-  Category,
   TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import externalStyle from "../style/externalStyle";
-import FlatButton from "../style/button.js";
-import { Container, Footer } from "native-base";
-import seriesBaseMethod, { seriesBase } from "../objects/seriesBase.js";
-import { seriesList } from "../objects/seriesList";
 import { image } from "./home";
 
+{
+  /* Show empty library screen if a condition is satisfied */
+}
 export default function emptySeriesLibrary({ navigation }) {
   return (
     <View style={externalStyle.container}>

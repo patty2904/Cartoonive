@@ -3,7 +3,6 @@ import { createAppContainer } from "react-navigation";
 import Start from "../screens/start";
 import CustomCharacters from "../screens/customiseCharacter";
 import Home from "../screens/home";
-import Header from "../style/header";
 import React from "react";
 import Movies from "../screens/movies";
 import Series from "../screens/series";
@@ -12,13 +11,16 @@ import MovieLibrary from "../screens/movieLibrary";
 import SeriesLibrary from "../screens/seriesLibrary";
 import EmptyMovieLibrary from "../screens/emptyMovieLibrary";
 import EmptySeriesLibrary from "../screens/emptySeriesLibrary.js";
-import { Image, TouchableOpacity } from "react-native";
+
+//header is to be at 0 as we are designing it in the other functions
+//by overriding values
+
+//establish order of navigation
 
 const screens = {
   Start: {
     screen: Start,
     navigationOptions: {
-      headerTitle: () => <Header />,
       headerStyle: {
         height: 0,
       },
@@ -27,7 +29,6 @@ const screens = {
   CustomCharacters: {
     screen: CustomCharacters,
     navigationOptions: {
-      headerTitle: () => <Header />,
       headerLeft: () => null,
       headerStyle: {
         height: 0,
@@ -37,7 +38,6 @@ const screens = {
   Home: {
     screen: Home,
     navigationOptions: {
-      headerTitle: () => <Header />,
       headerLeft: () => null,
       headerStyle: {
         height: 0,
@@ -47,7 +47,6 @@ const screens = {
   Movies: {
     screen: Movies,
     navigationOptions: {
-      headerTitle: () => <Header />,
       headerLeft: () => null,
       headerStyle: {
         height: 0,
@@ -57,7 +56,6 @@ const screens = {
   Series: {
     screen: Series,
     navigationOptions: {
-      headerTitle: () => <Header />,
       headerLeft: () => null,
       headerStyle: {
         height: 0,
@@ -67,7 +65,6 @@ const screens = {
   LibraryHome: {
     screen: LibraryHome,
     navigationOptions: {
-      headerTitle: () => <Header />,
       headerLeft: () => null,
       headerStyle: {
         height: 0,
@@ -77,7 +74,6 @@ const screens = {
   MovieLibrary: {
     screen: MovieLibrary,
     navigationOptions: {
-      headerTitle: () => <Header />,
       headerLeft: () => null,
       headerStyle: {
         height: 0,
@@ -87,7 +83,6 @@ const screens = {
   SeriesLibrary: {
     screen: SeriesLibrary,
     navigationOptions: {
-      headerTitle: () => <Header />,
       headerLeft: () => null,
       headerStyle: {
         height: 0,
@@ -97,7 +92,6 @@ const screens = {
   EmptyMovieLibrary: {
     screen: EmptyMovieLibrary,
     navigationOptions: {
-      headerTitle: () => <Header />,
       headerLeft: () => null,
       headerStyle: {
         height: 0,
@@ -107,7 +101,6 @@ const screens = {
   EmptySeriesLibrary: {
     screen: EmptySeriesLibrary,
     navigationOptions: {
-      headerTitle: () => <Header />,
       headerLeft: () => null,
       headerStyle: {
         height: 0,

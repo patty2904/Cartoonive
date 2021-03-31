@@ -18,7 +18,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import externalStyle from "../style/externalStyle";
 import FlatButton from "../style/button.js";
 import { Container, Footer } from "native-base";
-import seriesBaseMethod, { seriesBase } from "../objects/seriesBase.js";
 import { seriesList } from "../objects/seriesList";
 import { image } from "./home";
 import { addedMovieList } from "./movies";

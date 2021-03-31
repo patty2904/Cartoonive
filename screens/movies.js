@@ -2,40 +2,33 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   Modal,
-  Header,
   Alert,
-  Content,
   Text,
   View,
-  SafeAreaView,
   Image,
   ImageBackground,
   ScrollView,
-  Category,
   TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import externalStyle from "../style/externalStyle";
-import FlatButton from "../style/button.js";
-import { Container, Footer } from "native-base";
-import seriesBaseMethod, { seriesBase } from "../objects/seriesBase.js";
-import { seriesList } from "../objects/seriesList";
 import { useState } from "react";
-
 import { image } from "./home";
 import { moviesList } from "../objects/moviesList";
+
 let addedMovieList = [];
 let userRating;
-
 export default function movies({ navigation }) {
+  //state variables
   const [modalOpen, setModalOpen] = useState(false);
   const [getK, setK] = useState(7);
+  //loads in the array of objects holding only the
+  //added data to the users' library
   let [getAdded, setAdded] = useState([]);
 
   var customTop = 15;
   var customLeft = 0;
   var customRight = 155;
-  let k = 19;
   const populateMovies = [];
   for (let i in moviesList) {
     populateMovies.push(
@@ -43,7 +36,6 @@ export default function movies({ navigation }) {
         onPress={() => {
           setModalOpen(true);
           setK(i);
-          console.log("k inside loop:" + k);
         }}
       >
         <Image
@@ -71,13 +63,15 @@ export default function movies({ navigation }) {
     }
   }
 
+  //function that will store an array of objects
+  //for the titles the user wants to save
   let addToArray = (moviePosition) => {
     if (moviePosition.hasAdded == true) {
-      //populateAddedMovies.push(moviePosition);
       setAdded((getAdded) => [...getAdded, moviePosition]);
     }
   };
 
+  //function that will store the users saved rating
   let ratingHandler = (num) => {
     Alert.alert("Saved", "Your rating has been saved!");
     moviesList[getK].rating = num;
@@ -94,6 +88,9 @@ export default function movies({ navigation }) {
       <View style={externalStyle.headerr}>
         <TouchableOpacity
           onPress={() => {
+            /* Concatenate array for export
+            we are copying the array to another
+            as you cannot export use state variables */
             addedMovieList = getAdded.concat(addedMovieList);
             navigation.navigate("Home");
           }}
@@ -133,6 +130,7 @@ export default function movies({ navigation }) {
                   style={{ width: 50, height: 50, left: 20, bottom: -50 }}
                   source={require("../assets/removeblue.png")}
                 />
+                {/* Display appropraite information based on getK use state */}
               </TouchableOpacity>
               <Image
                 style={{ height: 200, width: 200, bottom: -40, left: 105 }}
@@ -173,6 +171,9 @@ export default function movies({ navigation }) {
               </Text>
               <TouchableOpacity
                 onPress={() => {
+                  {
+                    /* Copy title to array */
+                  }
                   moviesList[getK].hasAdded = true;
                   {
                     addToArray(moviesList[getK]);
@@ -183,7 +184,6 @@ export default function movies({ navigation }) {
                   );
                 }}
               >
-                {console.log(getAdded)}
                 <Image
                   style={{ height: 80, width: 80, bottom: -130, left: 150 }}
                   source={require("../assets/plus.png")}
@@ -194,6 +194,7 @@ export default function movies({ navigation }) {
                 showsHorizontalScrollIndicator={false}
                 style={{ bottom: -200 }}
               >
+                {/* Establish which emoticon a user presses */}
                 <TouchableOpacity onPress={() => ratingHandler("1")}>
                   <Image
                     style={{ height: 100, width: 100, alignSelf: "center" }}
@@ -269,6 +270,9 @@ export default function movies({ navigation }) {
         >
           <TouchableOpacity
             onPress={() => {
+              {
+                /* Concat new array when user exits screen */
+              }
               addedMovieList = getAdded.concat(addedMovieList);
               navigation.navigate("LibraryHome");
             }}

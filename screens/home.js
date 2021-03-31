@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   Text,
@@ -9,10 +8,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import externalStyle from "../style/externalStyle";
-import FlatButton from "../style/button.js";
-import { Container, Footer } from "native-base";
 import { CHARACTER } from "./customiseCharacter";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import ONE from "../assets/characters/001-superhero.png";
 import TWO from "../assets/characters/003-superhero.png";
 import THREE from "../assets/characters/013-superhero.png";
@@ -21,6 +17,7 @@ import FIVE from "../assets/characters/025-superhero.png";
 import SIX from "../assets/characters/038-superhero.png";
 import SEVEN from "../assets/characters/041-superhero.png";
 
+//retrieve correct character
 var image = "";
 export default function home({ navigation }) {
   const retrieveCharacter = () => {
@@ -49,10 +46,11 @@ export default function home({ navigation }) {
         colors={["#0A043C", "#03506F", "#A3DDCB", "#A3DDCB"]}
         style={externalStyle.background}
       />
-
+      {/* Get correct rating */}
       {retrieveCharacter()}
 
       <View style={externalStyle.headerr}>
+        {/* Back button functionality */}
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("CustomCharacters");
@@ -94,6 +92,7 @@ export default function home({ navigation }) {
               left: 5,
             }}
           >
+            {/* Navigate to movies */}
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("Movies");
@@ -121,6 +120,7 @@ export default function home({ navigation }) {
               right: -10,
             }}
           >
+            {/* Navigate to series */}
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("Series");
@@ -145,6 +145,7 @@ export default function home({ navigation }) {
           source={require("../assets/bluecircle.png")}
           style={{ width: 100, height: 100, left: 155, top: 0 }}
         >
+          {/* Display image and add navigation */}
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("LibraryHome");

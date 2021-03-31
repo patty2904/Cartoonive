@@ -25,12 +25,15 @@ import NINE from "../assets/emojis/sickness.png";
 import PINK from "../assets/circle.png";
 
 export default function movieLibrary({ navigation }) {
+  //use state variables to manipulate opening of modal
+  //and to display modal data appropriately
   const [modalOpen, setModalOpen] = useState(false);
   const [getK, setK] = useState(0);
 
   var customTop = 15;
   let k = 1;
 
+  //load object data in
   const populateLibrary = [];
   for (let i in addedMovieList) {
     populateLibrary.push(
@@ -38,7 +41,6 @@ export default function movieLibrary({ navigation }) {
         onPress={() => {
           setModalOpen(true);
           setK(i);
-          console.log("k inside loop:" + k);
         }}
       >
         <Image
@@ -59,6 +61,7 @@ export default function movieLibrary({ navigation }) {
     customTop += 15;
   }
 
+  //get correct rating, assign variable to corresponding image source
   var ratingImage = "";
   const retrieveRating = () => {
     if (userRating == 1) {
@@ -114,6 +117,7 @@ export default function movieLibrary({ navigation }) {
         </TouchableOpacity>
       </View>
 
+      {/* Calling the array */}
       <ScrollView>
         <View style={{ paddingLeft: -190, paddingRight: 170, marginLeft: 20 }}>
           {populateLibrary}
@@ -123,6 +127,7 @@ export default function movieLibrary({ navigation }) {
               navigation.navigate("Movies");
             }}
           >
+            {/* Plus button navigates back accordingly */}
             <Image
               source={require("../assets/plus.png")}
               style={{
@@ -145,6 +150,7 @@ export default function movieLibrary({ navigation }) {
               flex: 1,
             }}
           >
+            {/* Close modal when button pressed */}
             <View style={{ backgroundColor: "#B6A3B0", flex: 1 }}>
               <TouchableOpacity
                 onPress={() => {
@@ -152,6 +158,7 @@ export default function movieLibrary({ navigation }) {
                   console.log("k outside of loop: " + k);
                 }}
               >
+                {/* Display data accordingly based on useState variable above - getK */}
                 <Image
                   style={{ width: 50, height: 50, left: 20, bottom: -50 }}
                   source={require("../assets/removeblue.png")}
@@ -198,6 +205,7 @@ export default function movieLibrary({ navigation }) {
                 style={{ height: 80, width: 80, bottom: -140, left: 150 }}
                 source={require("../assets/tick.png")}
               />
+              {/* Get correct rating */}
               <Image
                 style={{ height: 80, width: 80, left: 150, bottom: -190 }}
                 source={ratingImage}

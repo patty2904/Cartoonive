@@ -4,12 +4,9 @@ import {
   Alert,
   Text,
   View,
-  Button,
-  SafeAreaView,
   Image,
   ImageBackground,
   ScrollView,
-  Category,
   TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -17,21 +14,22 @@ import externalStyle from "../style/externalStyle";
 import { seriesList } from "../objects/seriesList";
 import { useState } from "react";
 import { image } from "./home";
-import { get } from "react-native/Libraries/Utilities/PixelRatio";
 
 let addedSeriesList = [];
 let seriesRating;
 
 export default function series({ navigation }) {
+  //state variables
   const [modalOpen, setModalOpen] = useState(false);
   const [getK, setK] = useState(7);
+  //loads in the array of objects holding only the
+  //added data to the users' library
   let [getAdded, setAdded] = useState([]);
 
-  let imageToggle = true;
+  //custom variables for manipulating position
   var customTop = 15;
   var customLeft = 0;
   var customRight = 155;
-  let k = 19;
   const populateSeries = [];
   for (let i in seriesList) {
     populateSeries.push(
@@ -39,7 +37,6 @@ export default function series({ navigation }) {
         onPress={() => {
           setModalOpen(true);
           setK(i);
-          console.log("k inside loop:" + k);
         }}
       >
         <Image
@@ -67,12 +64,15 @@ export default function series({ navigation }) {
     }
   }
 
+  //function that will store an array of objects
+  //for the titles the user wants to save
   let addToSeriesArray = (seriesPosition) => {
     if (seriesPosition.hasAdded == true) {
       setAdded((getAdded) => [...getAdded, seriesPosition]);
     }
   };
 
+  //function that will store the users saved rating
   let seriesRatingHandler = (num) => {
     Alert.alert("Saved", "Your rating has been saved!");
     seriesList[getK].rating = num;
@@ -89,6 +89,11 @@ export default function series({ navigation }) {
       <View style={externalStyle.headerr}>
         <TouchableOpacity
           onPress={() => {
+            {
+              /* Concatenate array for export
+            we are copying the array to another
+            as you cannot export use state variables */
+            }
             addedSeriesList = getAdded.concat(addedSeriesList);
             navigation.navigate("Home");
           }}
@@ -122,6 +127,7 @@ export default function series({ navigation }) {
                 style={{ width: 50, height: 50, left: 20, bottom: -50 }}
                 source={require("../assets/removeblue.png")}
               />
+              {/* Display appropraite information based on getK use state */}
             </TouchableOpacity>
             <Image
               style={{ height: 200, width: 200, bottom: -40, left: 105 }}
@@ -163,6 +169,9 @@ export default function series({ navigation }) {
 
             <TouchableOpacity
               onPress={() => {
+                {
+                  /* Copy title to array */
+                }
                 seriesList[getK].hasAdded = true;
                 {
                   addToSeriesArray(seriesList[getK]);
@@ -184,6 +193,7 @@ export default function series({ navigation }) {
               showsHorizontalScrollIndicator={false}
               style={{ bottom: -200 }}
             >
+              {/* Establish which emoticon a user presses */}
               <TouchableOpacity onPress={() => seriesRatingHandler("1")}>
                 <Image
                   style={{ height: 100, width: 100, alignSelf: "center" }}
@@ -255,6 +265,7 @@ export default function series({ navigation }) {
           source={require("../assets/bluecircle.png")}
           style={{ width: 100, height: 100, left: 155, top: 0 }}
         >
+          {/* Concat new array when user exits screen */}
           <TouchableOpacity
             onPress={() => {
               addedSeriesList = getAdded.concat(addedSeriesList);
@@ -282,6 +293,6 @@ export default function series({ navigation }) {
     </View>
   );
 }
-
+//export for usage in Library screens
 export { addedSeriesList };
 export { seriesRating };

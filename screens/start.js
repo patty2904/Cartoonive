@@ -12,11 +12,9 @@ import externalStyle from "../style/externalStyle";
 import FlatButton from "../style/button.js";
 
 export default function Start({ navigation }) {
-  //destructuring
-
+  //move to next screen
   const pressHandler = () => {
     navigation.navigate("CustomCharacters");
-    //navigation.push('CustomCharacters');
   };
 
   return (
@@ -30,6 +28,7 @@ export default function Start({ navigation }) {
       </TouchableOpacity>
 
       <View>
+        {/*Custom button leads to function at the top */}
         <FlatButton
           text="start"
           style={externalStyle.fontStyle}
