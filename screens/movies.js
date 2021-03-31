@@ -3,6 +3,7 @@ import React from "react";
 import {
   Modal,
   Header,
+  Alert,
   Content,
   Text,
   View,
@@ -24,14 +25,13 @@ import { useState } from "react";
 import { image } from "./home";
 import { moviesList } from "../objects/moviesList";
 let addedMovieList = [];
+let userRating;
 
-//var [getAdded, setAdded] = null;
 export default function movies({ navigation }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [getK, setK] = useState(7);
   let [getAdded, setAdded] = useState([]);
 
-  let imageToggle = true;
   var customTop = 15;
   var customLeft = 0;
   var customRight = 155;
@@ -71,8 +71,6 @@ export default function movies({ navigation }) {
     }
   }
 
-  //let populateAddedMovies = [];
-
   let addToArray = (moviePosition) => {
     if (moviePosition.hasAdded == true) {
       //populateAddedMovies.push(moviePosition);
@@ -80,11 +78,11 @@ export default function movies({ navigation }) {
     }
   };
 
-  let addForExport = () => {
-    {
-    }
+  let ratingHandler = (num) => {
+    Alert.alert("Saved", "Your rating has been saved!");
+    moviesList[getK].rating = num;
+    userRating = moviesList[getK].rating;
   };
-  // addedMovieList = getAdded.concat(addedMovieList);
 
   return (
     <View style={externalStyle.container}>
@@ -97,9 +95,6 @@ export default function movies({ navigation }) {
         <TouchableOpacity
           onPress={() => {
             addedMovieList = getAdded.concat(addedMovieList);
-            {
-              console.log("array to export..." + addedMovieList);
-            }
             navigation.navigate("Home");
           }}
         >
@@ -120,7 +115,7 @@ export default function movies({ navigation }) {
         </View>
       </ScrollView>
 
-      <View>
+      <>
         <Modal visible={modalOpen} animationType="slide">
           <ScrollView
             style={{
@@ -132,7 +127,6 @@ export default function movies({ navigation }) {
               <TouchableOpacity
                 onPress={() => {
                   setModalOpen(false);
-                  console.log("k outside of loop: " + k);
                 }}
               >
                 <Image
@@ -179,89 +173,84 @@ export default function movies({ navigation }) {
               </Text>
               <TouchableOpacity
                 onPress={() => {
-                  imageToggle = false;
-                  console.log(imageToggle);
                   moviesList[getK].hasAdded = true;
                   {
                     addToArray(moviesList[getK]);
                   }
+                  Alert.alert(
+                    "Saved",
+                    "This title has been added to your library"
+                  );
                 }}
               >
                 {console.log(getAdded)}
-                {imageToggle === true ? (
-                  <Image
-                    style={{ height: 80, width: 80, bottom: -130, left: 150 }}
-                    source={require("../assets/plus.png")}
-                  />
-                ) : (
-                  <Image
-                    style={{ height: 80, width: 80, bottom: -130, left: 150 }}
-                    source={require("../assets/tick.png")}
-                  />
-                )}
+                <Image
+                  style={{ height: 80, width: 80, bottom: -130, left: 150 }}
+                  source={require("../assets/plus.png")}
+                />
               </TouchableOpacity>
               <ScrollView
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 style={{ bottom: -200 }}
               >
-                <TouchableOpacity onPress={() => pressHandler("1")}>
+                <TouchableOpacity onPress={() => ratingHandler("1")}>
                   <Image
                     style={{ height: 100, width: 100, alignSelf: "center" }}
                     source={require("../assets/emojis/happiness.png")}
                   />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => pressHandler("2")}>
+                <TouchableOpacity onPress={() => ratingHandler("2")}>
                   <Image
                     style={{ height: 100, width: 100, alignSelf: "center" }}
                     source={require("../assets/emojis/sadness.png")}
                   />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => pressHandler("3")}>
+                <TouchableOpacity onPress={() => ratingHandler("3")}>
                   <Image
                     style={{ height: 100, width: 100, alignSelf: "center" }}
                     source={require("../assets/emojis/love.png")}
                   />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => pressHandler("4")}>
+                <TouchableOpacity onPress={() => ratingHandler("4")}>
                   <Image
                     style={{ height: 100, width: 100, alignSelf: "center" }}
                     source={require("../assets/emojis/fear.png")}
                   />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => pressHandler("5")}>
+                <TouchableOpacity onPress={() => ratingHandler("5")}>
                   <Image
                     style={{ height: 100, width: 100, alignSelf: "center" }}
                     source={require("../assets/emojis/excited.png")}
                   />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => pressHandler("6")}>
+                <TouchableOpacity onPress={() => ratingHandler("6")}>
                   <Image
                     style={{ height: 100, width: 100, alignSelf: "center" }}
                     source={require("../assets/emojis/dead.png")}
                   />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => pressHandler("7")}>
+                <TouchableOpacity onPress={() => ratingHandler("7")}>
                   <Image
                     style={{ height: 100, width: 100, alignSelf: "center" }}
                     source={require("../assets/emojis/disappointment.png")}
                   />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => pressHandler("8")}>
+                <TouchableOpacity onPress={() => ratingHandler("8")}>
                   <Image
                     style={{ height: 100, width: 100, alignSelf: "center" }}
                     source={require("../assets/emojis/friendly.png")}
                   />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => pressHandler("9")}>
+                <TouchableOpacity onPress={() => ratingHandler("9")}>
                   <Image
                     style={{ height: 100, width: 100, alignSelf: "center" }}
                     source={require("../assets/emojis/sickness.png")}
@@ -271,19 +260,8 @@ export default function movies({ navigation }) {
             </View>
           </ScrollView>
         </Modal>
-      </View>
-      <View style={externalStyle.container}>
-        <ImageBackground
-          source={require("../assets/cleanlogo.png")}
-          style={{
-            height: 327,
-            width: 327,
-            bottom: 300,
-            opacity: 0,
-          }}
-          resizeMode="contain"
-        ></ImageBackground>
-      </View>
+      </>
+
       <View style={externalStyle.footer}>
         <ImageBackground
           source={require("../assets/bluecircle.png")}
@@ -317,3 +295,4 @@ export default function movies({ navigation }) {
   );
 }
 export { addedMovieList };
+export { userRating };

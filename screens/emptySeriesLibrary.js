@@ -22,7 +22,7 @@ import seriesBaseMethod, { seriesBase } from "../objects/seriesBase.js";
 import { seriesList } from "../objects/seriesList";
 import { image } from "./home";
 
-export default function emptyMovieLibrary({ navigation }) {
+export default function emptySeriesLibrary({ navigation }) {
   return (
     <View style={externalStyle.container}>
       <LinearGradient
@@ -42,7 +42,7 @@ export default function emptyMovieLibrary({ navigation }) {
           />
           <ImageBackground
             style={{ width: 60, height: 60, bottom: 10, right: 2 }}
-            source={require("../assets/movies.png")}
+            source={require("../assets/series.png")}
           >
             <Image
               style={{ width: 60, height: 60, right: -30 }}
@@ -63,7 +63,7 @@ export default function emptyMovieLibrary({ navigation }) {
         >
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("Movies");
+              navigation.navigate("Series");
             }}
           >
             <Image
@@ -89,7 +89,7 @@ export default function emptyMovieLibrary({ navigation }) {
             bottom: 5,
           }}
         >
-          My Movies
+          My Series
         </Text>
       </View>
     </View>

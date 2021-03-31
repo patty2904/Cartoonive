@@ -22,6 +22,7 @@ import seriesBaseMethod, { seriesBase } from "../objects/seriesBase.js";
 import { seriesList } from "../objects/seriesList";
 import { image } from "./home";
 import { addedMovieList } from "./movies";
+import { addedSeriesList } from "./series";
 
 export default function libraryHome({ navigation }) {
   return (
@@ -100,7 +101,11 @@ export default function libraryHome({ navigation }) {
           >
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("SeriesLibrary");
+                if (addedSeriesList.length === 0) {
+                  navigation.navigate("EmptySeriesLibrary");
+                } else {
+                  navigation.navigate("SeriesLibrary");
+                }
               }}
             >
               <Image

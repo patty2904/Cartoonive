@@ -11,6 +11,7 @@ import LibraryHome from "../screens/libraryHome";
 import MovieLibrary from "../screens/movieLibrary";
 import SeriesLibrary from "../screens/seriesLibrary";
 import EmptyMovieLibrary from "../screens/emptyMovieLibrary";
+import EmptySeriesLibrary from "../screens/emptySeriesLibrary.js";
 import { Image, TouchableOpacity } from "react-native";
 
 const screens = {
@@ -95,6 +96,16 @@ const screens = {
   },
   EmptyMovieLibrary: {
     screen: EmptyMovieLibrary,
+    navigationOptions: {
+      headerTitle: () => <Header />,
+      headerLeft: () => null,
+      headerStyle: {
+        height: 0,
+      },
+    },
+  },
+  EmptySeriesLibrary: {
+    screen: EmptySeriesLibrary,
     navigationOptions: {
       headerTitle: () => <Header />,
       headerLeft: () => null,

@@ -1,34 +1,33 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
-  FooterTab,
   Modal,
-  Content,
   Text,
   View,
-  Button,
-  SafeAreaView,
   Image,
   ImageBackground,
   ScrollView,
-  Category,
   TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import externalStyle from "../style/externalStyle";
-import FlatButton from "../style/button.js";
-import { Container, Footer } from "native-base";
-import seriesBaseMethod, { seriesBase } from "../objects/seriesBase.js";
-import { seriesList } from "../objects/seriesList";
 import { image } from "./home";
-import { addedMovieList } from "./movies";
+import { addedMovieList, userRating } from "./movies";
 import { useState } from "react";
+import ONE from "../assets/emojis/happiness.png";
+import TWO from "../assets/emojis/sadness.png";
+import THREE from "../assets/emojis/love.png";
+import FOUR from "../assets/emojis/fear.png";
+import FIVE from "../assets/emojis/excited.png";
+import SIX from "../assets/emojis/dead.png";
+import SEVEN from "../assets/emojis/disappointment.png";
+import EIGHT from "../assets/emojis/friendly.png";
+import NINE from "../assets/emojis/sickness.png";
+import PINK from "../assets/circle.png";
 
 export default function movieLibrary({ navigation }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [getK, setK] = useState(0);
 
-  let imageToggle = true;
   var customTop = 15;
   let k = 1;
 
@@ -60,12 +59,38 @@ export default function movieLibrary({ navigation }) {
     customTop += 15;
   }
 
+  var ratingImage = "";
+  const retrieveRating = () => {
+    if (userRating == 1) {
+      ratingImage = ONE;
+    } else if (userRating == 2) {
+      ratingImage = TWO;
+    } else if (userRating == 3) {
+      ratingImage = THREE;
+    } else if (userRating == 4) {
+      ratingImage = FOUR;
+    } else if (userRating == 5) {
+      ratingImage = FIVE;
+    } else if (userRating == 6) {
+      ratingImage = SIX;
+    } else if (userRating == 7) {
+      ratingImage = SEVEN;
+    } else if (userRating == 8) {
+      ratingImage = EIGHT;
+    } else if (userRating == 9) {
+      ratingImage = NINE;
+    } else {
+      ratingImage = PINK;
+    }
+  };
+
   return (
     <View style={externalStyle.container}>
       <LinearGradient
         colors={["#0A043C", "#03506F", "#A3DDCB", "#A3DDCB"]}
         style={externalStyle.background}
       />
+      {retrieveRating()}
 
       <View style={externalStyle.headerr}>
         <TouchableOpacity
@@ -92,6 +117,7 @@ export default function movieLibrary({ navigation }) {
       <ScrollView>
         <View style={{ paddingLeft: -190, paddingRight: 170, marginLeft: 20 }}>
           {populateLibrary}
+
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("Movies");
@@ -103,8 +129,8 @@ export default function movieLibrary({ navigation }) {
                 opacity: 0.5,
                 height: 100,
                 width: 100,
-                top: 150,
-                right: -10,
+                top: 80,
+                left: 110,
               }}
             />
           </TouchableOpacity>
@@ -172,21 +198,15 @@ export default function movieLibrary({ navigation }) {
                 style={{ height: 80, width: 80, bottom: -140, left: 150 }}
                 source={require("../assets/tick.png")}
               />
+              <Image
+                style={{ height: 80, width: 80, left: 150, bottom: -190 }}
+                source={ratingImage}
+              />
             </View>
           </ScrollView>
         </Modal>
       </View>
 
-      <View style={externalStyle.container}>
-        <ImageBackground
-          source={require("../assets/cleanlogo.png")}
-          style={{
-            height: 327,
-            width: 327,
-          }}
-          resizeMode="contain"
-        ></ImageBackground>
-      </View>
       <View style={externalStyle.footer}>
         <Text
           style={{

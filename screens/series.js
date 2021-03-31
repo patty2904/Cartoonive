@@ -1,8 +1,7 @@
 import React from "react";
 import {
   Modal,
-  Header,
-  Content,
+  Alert,
   Text,
   View,
   Button,
@@ -20,9 +19,13 @@ import { useState } from "react";
 import { image } from "./home";
 import { get } from "react-native/Libraries/Utilities/PixelRatio";
 
+let addedSeriesList = [];
+let seriesRating;
+
 export default function series({ navigation }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [getK, setK] = useState(7);
+  let [getAdded, setAdded] = useState([]);
 
   let imageToggle = true;
   var customTop = 15;
@@ -64,6 +67,18 @@ export default function series({ navigation }) {
     }
   }
 
+  let addToSeriesArray = (seriesPosition) => {
+    if (seriesPosition.hasAdded == true) {
+      setAdded((getAdded) => [...getAdded, seriesPosition]);
+    }
+  };
+
+  let seriesRatingHandler = (num) => {
+    Alert.alert("Saved", "Your rating has been saved!");
+    seriesList[getK].rating = num;
+    seriesRating = seriesList[getK].rating;
+  };
+
   return (
     <View style={externalStyle.container}>
       <LinearGradient
@@ -74,6 +89,7 @@ export default function series({ navigation }) {
       <View style={externalStyle.headerr}>
         <TouchableOpacity
           onPress={() => {
+            addedSeriesList = getAdded.concat(addedSeriesList);
             navigation.navigate("Home");
           }}
         >
@@ -100,7 +116,6 @@ export default function series({ navigation }) {
             <TouchableOpacity
               onPress={() => {
                 setModalOpen(false);
-                console.log("k outside of loop: " + k);
               }}
             >
               <Image
@@ -148,21 +163,20 @@ export default function series({ navigation }) {
 
             <TouchableOpacity
               onPress={() => {
-                imageToggle = false;
-                console.log(imageToggle);
+                seriesList[getK].hasAdded = true;
+                {
+                  addToSeriesArray(seriesList[getK]);
+                }
+                Alert.alert(
+                  "Saved",
+                  "This title has been added to your library"
+                );
               }}
             >
-              {imageToggle === true ? (
-                <Image
-                  style={{ height: 80, width: 80, bottom: -130, left: 150 }}
-                  source={require("../assets/plus.png")}
-                />
-              ) : (
-                <Image
-                  style={{ height: 80, width: 80, bottom: -130, left: 150 }}
-                  source={require("../assets/tick.png")}
-                />
-              )}
+              <Image
+                style={{ height: 80, width: 80, bottom: -130, left: 150 }}
+                source={require("../assets/plus.png")}
+              />
             </TouchableOpacity>
 
             <ScrollView
@@ -170,63 +184,63 @@ export default function series({ navigation }) {
               showsHorizontalScrollIndicator={false}
               style={{ bottom: -200 }}
             >
-              <TouchableOpacity onPress={() => pressHandler("1")}>
+              <TouchableOpacity onPress={() => seriesRatingHandler("1")}>
                 <Image
                   style={{ height: 100, width: 100, alignSelf: "center" }}
                   source={require("../assets/emojis/happiness.png")}
                 />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => pressHandler("2")}>
+              <TouchableOpacity onPress={() => seriesRatingHandler("2")}>
                 <Image
                   style={{ height: 100, width: 100, alignSelf: "center" }}
                   source={require("../assets/emojis/sadness.png")}
                 />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => pressHandler("3")}>
+              <TouchableOpacity onPress={() => seriesRatingHandler("3")}>
                 <Image
                   style={{ height: 100, width: 100, alignSelf: "center" }}
                   source={require("../assets/emojis/love.png")}
                 />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => pressHandler("4")}>
+              <TouchableOpacity onPress={() => seriesRatingHandler("4")}>
                 <Image
                   style={{ height: 100, width: 100, alignSelf: "center" }}
                   source={require("../assets/emojis/fear.png")}
                 />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => pressHandler("5")}>
+              <TouchableOpacity onPress={() => seriesRatingHandler("5")}>
                 <Image
                   style={{ height: 100, width: 100, alignSelf: "center" }}
                   source={require("../assets/emojis/excited.png")}
                 />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => pressHandler("6")}>
+              <TouchableOpacity onPress={() => seriesRatingHandler("6")}>
                 <Image
                   style={{ height: 100, width: 100, alignSelf: "center" }}
                   source={require("../assets/emojis/dead.png")}
                 />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => pressHandler("7")}>
+              <TouchableOpacity onPress={() => seriesRatingHandler("7")}>
                 <Image
                   style={{ height: 100, width: 100, alignSelf: "center" }}
                   source={require("../assets/emojis/disappointment.png")}
                 />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => pressHandler("8")}>
+              <TouchableOpacity onPress={() => seriesRatingHandler("8")}>
                 <Image
                   style={{ height: 100, width: 100, alignSelf: "center" }}
                   source={require("../assets/emojis/friendly.png")}
                 />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => pressHandler("9")}>
+              <TouchableOpacity onPress={() => seriesRatingHandler("9")}>
                 <Image
                   style={{ height: 100, width: 100, alignSelf: "center" }}
                   source={require("../assets/emojis/sickness.png")}
@@ -236,18 +250,6 @@ export default function series({ navigation }) {
           </View>
         </Modal>
       </View>
-      <View style={externalStyle.container}>
-        <ImageBackground
-          source={require("../assets/cleanlogo.png")}
-          style={{
-            height: 327,
-            width: 327,
-            bottom: 300,
-            opacity: 0,
-          }}
-          resizeMode="contain"
-        ></ImageBackground>
-      </View>
       <View style={externalStyle.footer}>
         <ImageBackground
           source={require("../assets/bluecircle.png")}
@@ -255,6 +257,7 @@ export default function series({ navigation }) {
         >
           <TouchableOpacity
             onPress={() => {
+              addedSeriesList = getAdded.concat(addedSeriesList);
               navigation.navigate("LibraryHome");
             }}
           >
@@ -279,3 +282,6 @@ export default function series({ navigation }) {
     </View>
   );
 }
+
+export { addedSeriesList };
+export { seriesRating };
